@@ -1,0 +1,23 @@
+https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-node-js-on-ubuntu-20-04
+
+
+$ sudo -u <dbuser> psql
+
+postgres=# CREATE USER <dbuser> WITH PASSWORD <dbpassword>;
+CREATE ROLE
+
+postgres=# CREATE DATABASE <dbname>;
+CREATE DATABASE
+
+postgres=# GRANT ALL PRIVILEGES ON DATABASE <dbname> TO <dbuser>;
+GRANT
+
+postgres=# \du
+postgres=# \dt
+postgres=# \l
+
+mydb=> CREATE TABLE users(
+mydb(> id SERIAL PRIMARY KEY,
+mydb(> name VARCHAR(50)
+mydb(> );
+CREATE TABLE
