@@ -1,5 +1,6 @@
 const express = require('express')
 var bodyParser = require('body-parser')
+var cors = require('cors')
 
 const User = require('./controllers/user')
 const Category = require('./controllers/category')
@@ -13,6 +14,7 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 3000
 
+app.use(cors())
 // app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true,}))
