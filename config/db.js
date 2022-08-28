@@ -8,16 +8,4 @@ const pool = new Pool({
   port: process.env.PGPORT,
 })
 
-const getUsers = (req, res) => {
-    console.log(process.env.PGUSER)
-    let getUsersQuery = 'SELECT * FROM users'
-    pool.query(getUsersQuery, (error, results) => {
-      if (error) { console.log(error) }
-      else { res.status(200).json(results.rows)}
-      pool.end() 
-    })
-}
-
-module.exports = {
-    getUsers
-}
+module.exports = { pool }

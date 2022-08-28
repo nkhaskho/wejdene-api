@@ -16,8 +16,19 @@ postgres=# \du
 postgres=# \dt
 postgres=# \l
 
-mydb=> CREATE TABLE users(
-mydb(> id SERIAL PRIMARY KEY,
-mydb(> name VARCHAR(50)
-mydb(> );
-CREATE TABLE
+# \l
+
+CREATE TABLE users(
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(128) NOT NULL,
+    role VARCHAR(20) NOT NULL
+);
+INSERT INTO users(username, email, password, role) values('nkhaskho', 'nkh@email.com', 'pass1234', 'admin');
+
+CREATE TABLE categories(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) UNIQUE NOT NULL
+);
+INSERT INTO categories(name) values('Administration');
