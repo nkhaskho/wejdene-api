@@ -1,7 +1,7 @@
 https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-node-js-on-ubuntu-20-04
 
 
-$ sudo -u <dbuser> psql
+$ sudo -u postgres psql
 
 postgres=# CREATE USER <dbuser> WITH PASSWORD <dbpassword>;
 CREATE ROLE
@@ -32,3 +32,15 @@ CREATE TABLE categories(
     name VARCHAR(50) UNIQUE NOT NULL
 );
 INSERT INTO categories(name) values('Administration');
+
+postgres=# \list
+\connect dbname 
+
+CREATE TABLE tickets(
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(128) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    createdAt TIMESTAMP DEFAULT NOW(),
+    closedAt TIMESTAMP,
+    status VARCHAR(30) NOT NULL
+);  

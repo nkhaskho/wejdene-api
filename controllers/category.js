@@ -10,9 +10,7 @@ const getCategories = async (req, res) => {
 
 const getCategoryById = (req, res) => {
     const id = req.params.id
-    if (id == null) {
-        res.status(404).json({error: "param id required"})
-    }
+    if (id == null) { res.status(404).json({error: "param id required"}) }
     let query = `SELECT * FROM categories WHERE id=${id};`
     pool.query(query, (error, results) => {
       if (error) { console.log(error) }
@@ -21,8 +19,8 @@ const getCategoryById = (req, res) => {
 }
 
 const addCategory = (req, res) => {
-    const name = req.body.name
-    pool.query('INSERT INTO categories(name) values($1)', [name], (error, results) => {
+    const query = 'INSERT INTO categories(name) values($1)'
+    pool.query(query, [req.body.name], (error, results) => {
       if (error) { console.log(error) }
       else res.status(200).json(results.rows)
     })

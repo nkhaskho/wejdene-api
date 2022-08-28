@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 
 const User = require('./controllers/user')
 const Category = require('./controllers/category')
+const Ticket = require('./controllers/ticket')
 
 const dotenv = require("dotenv")
 dotenv.config()
@@ -22,6 +23,13 @@ app.get('/api/test', (req, res) => {
 app.get('/api/users', User.getUsers)
 app.post('/api/users', User.addUser)
 app.get('/api/users/:id', User.getUserById)
+app.delete('/api/users/:id', User.deleteUser)
+
+// tickets endpoint
+app.get('/api/tickets', Ticket.getTickets)
+app.post('/api/tickets', Ticket.addTicket)
+app.get('/api/tickets/:id', Ticket.getTicketById)
+app.delete('/api/tickets/:id', Ticket.deleteTicket)
 
 // categories endpoint
 app.get('/api/categories', Category.getCategories)
