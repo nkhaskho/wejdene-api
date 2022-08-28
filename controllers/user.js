@@ -1,4 +1,5 @@
 const { pool } = require('../config/db')
+const bcrypt = require('bcrypt')
 
 const getUsers = async (req, res) => {
     let query = 'SELECT * FROM users'
@@ -19,9 +20,11 @@ const getUserById = async (req, res) => {
     })
 }
 
-const addUser = (req, res) => {
-  const { username, email, password, role } = req.body
+const addUser = async (req, res) => {
+  let { username, email, password, role } = req.body
   const query = 'INSERT INTO users(username,email,password,role) values($1,$2,$3,$4) RETURNING *'
+  const salt = await bcrypt.genSalt(Number(process.env.SALT));
+  password = await bcrypt.hash(password, salt);
   pool.query(query, [username, email, password, role], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])

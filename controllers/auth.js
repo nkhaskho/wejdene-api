@@ -1,24 +1,29 @@
 const { pool } = require('../config/db')
-const jwt = require("jsonwebtoken");  
+const jwt = require("jsonwebtoken")
+const bcrypt = require('bcrypt')
 
 const authenticate = async (req, res) => {
     const { username, password } = req.body
     let query = 'SELECT * FROM users WHERE username=$1'
     console.log(username)
-    await pool.query(query, [req.body.username], (error, results) => {
+    await pool.query(query, [req.body.username], async (error, results) => {
       if (error) { res.status(400).json({error: error}) }
       if (results.rows.length>0) {
-        token = jwt.sign({
-            id: results.rows[0].id,
-            email: results.rows[0].email,
-            role: results.rows[0].role 
+        // Check password match
+        let matched = await bcrypt.compare(req.body.password, results.rows[0].password)
+        if (!matched) {res.status(400).json({error: 'username or password incorrect'})}
+        let token = jwt.sign({
+          id: results.rows[0].id,
+          email: results.rows[0].email,
+          role: results.rows[0].role 
           },
-          "secretkeyappearshere",
+          process.env.SECRET,
           { expiresIn: "1000h" }
         );
         res.status(200).json({token: token}) 
+      } else {
+        res.status(400).json({error: 'username or password incorrect'})
       }
-      res.status(404).send()
     })
 }
 
