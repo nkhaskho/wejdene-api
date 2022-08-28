@@ -1,7 +1,8 @@
 const { pool } = require('../config/db')
 
 const getSubCategories = async (req, res) => {
-    let query = 'SELECT * FROM subcategories ORDER BY name;'
+    let query = `SELECT * FROM subcategories`
+    if (req.query.category) query += ` WHERE category=${req.query.category}`
     await pool.query(query, (error, results) => {
       if (error) { console.log(error) }
       else res.status(200).json(results.rows)
@@ -19,10 +20,11 @@ const getSubCategoryById = (req, res) => {
 }
 
 const addSubCategory = (req, res) => {
-    const query = 'INSERT INTO subcategories(name) values($1)'
-    pool.query(query, [req.body.name], (error, results) => {
+    const query = 'INSERT INTO subcategories(name,category) VALUES($1,$2) RETURNING *'
+    console.log(req.body.name)
+    pool.query(query, [req.body.name,req.body.category], (error, results) => {
       if (error) { console.log(error) }
-      else res.status(200).json(results.rows)
+      else res.status(200).json(results.rows[0])
     })
 }
 

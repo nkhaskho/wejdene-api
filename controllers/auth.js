@@ -9,8 +9,9 @@ const authenticate = async (req, res) => {
       if (error) { res.status(400).json({error: error}) }
       if (results.rows.length>0) {
         token = jwt.sign({
-          id: results.rows[0].id,
-          email: results.rows[0].email 
+            id: results.rows[0].id,
+            email: results.rows[0].email,
+            role: results.rows[0].role 
           },
           "secretkeyappearshere",
           { expiresIn: "1000h" }

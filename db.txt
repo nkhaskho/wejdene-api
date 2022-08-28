@@ -41,6 +41,14 @@ CREATE TABLE categories(
 );
 INSERT INTO categories(name) values('Administration');
 
+CREATE TABLE subcategories(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) UNIQUE NOT NULL,
+    category INT NOT NULL,
+    CONSTRAINT fk_category
+      FOREIGN KEY(category) 
+	  REFERENCES categories(id) 
+);
 
 CREATE TABLE tickets(
     id SERIAL PRIMARY KEY,

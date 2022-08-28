@@ -4,7 +4,7 @@ var bodyParser = require('body-parser')
 const User = require('./controllers/user')
 const Category = require('./controllers/category')
 const Ticket = require('./controllers/ticket')
-const SubCategory = require('./controllers/sub-category')
+const SubCategory = require('./controllers/subcategory')
 const Auth = require('./controllers/auth')
 
 const dotenv = require("dotenv")
