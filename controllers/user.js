@@ -14,18 +14,36 @@ const getUserById = async (req, res) => {
     let query = `SELECT * FROM users WHERE id=${id};`
     await pool.query(query, (error, results) => {
       if (error) { res.status(400).json({error: error}) }
-      else { res.status(200).json(results.rows)}
+      if (results.rows.length>0) { res.status(200).json(results.rows[0]) }
+      res.status(404).send()
     })
 }
 
 const addUser = (req, res) => {
   const { username, email, password, role } = req.body
-  const query = 'INSERT INTO users(username,email,password,role) values($1,$2,$3,$4)'
+  const query = 'INSERT INTO users(username,email,password,role) values($1,$2,$3,$4) RETURNING *'
   pool.query(query, [username, email, password, role], (error, results) => {
+    if (error) { res.status(400).json({error: error}) }
+    else res.status(200).json(results.rows[0])
+  })
+}
+
+
+const updateUser = (req, res) => {
+  const { username, email, role } = req.body
+  const query = 'UPDATE users SET username=$1, email=$2, role=$3 WHERE id=$4 RETURNING *'
+  pool.query(query, [username, email, role, req.params.id], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows)
   })
 }
+
+/*
+pool.query("UPDATE shark SET name = $1 WHERE id = $2", [
+      name,
+      id,
+    ]);
+*/
 
 const deleteUser = (req, res) => {
   const query = `DELETE FROM users WHERE id=${req.params.id}`
@@ -36,5 +54,5 @@ const deleteUser = (req, res) => {
 }
 
 module.exports = {
-    getUsers, getUserById, addUser, deleteUser
+    getUsers, getUserById, addUser, deleteUser, updateUser
 }

@@ -18,6 +18,14 @@ postgres=# \l
 
 # \l
 
+
+List all databases
+postgres=# \list
+
+Connect to a database
+\connect dbname 
+
+
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -33,8 +41,6 @@ CREATE TABLE categories(
 );
 INSERT INTO categories(name) values('Administration');
 
-postgres=# \list
-\connect dbname 
 
 CREATE TABLE tickets(
     id SERIAL PRIMARY KEY,

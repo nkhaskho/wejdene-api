@@ -14,18 +14,34 @@ const getCategoryById = (req, res) => {
     let query = `SELECT * FROM categories WHERE id=${id};`
     pool.query(query, (error, results) => {
       if (error) { console.log(error) }
-      else { res.status(200).json(results.rows)}
+      else { res.status(200).json(results.rows[0])}
     })
 }
 
 const addCategory = (req, res) => {
-    const query = 'INSERT INTO categories(name) values($1)'
+    const query = 'INSERT INTO categories(name) values($1) RETURNING *'
     pool.query(query, [req.body.name], (error, results) => {
       if (error) { console.log(error) }
-      else res.status(200).json(results.rows)
+      else res.status(200).json(results.rows[0])
     })
 }
 
+const updateCategory = (req, res) => {
+  const query = 'UPDATE categories SET name=$1 WHERE id=$2 RETURNING *'
+  pool.query(query, [req.body.name, req.params.id], (error, results) => {
+    if (error) { res.status(400).json({error: error}) }
+    else res.status(200).json(results.rows[0])
+  })
+}
+
+const deleteCategory = (req, res) => {
+  const query = `DELETE FROM categories WHERE id=${req.params.id}`
+  pool.query(query, (error, results) => {
+    if (error) { res.status(400).json({error: error}) }
+    else res.status(200).json(results.rows)
+  })
+}
+
 module.exports = {
-    getCategories, getCategoryById, addCategory
+    getCategories, getCategoryById, addCategory, deleteCategory, updateCategory
 }

@@ -14,16 +14,26 @@ const getTicketById = async (req, res) => {
     let query = `SELECT * FROM tickets WHERE id=${id};`
     await pool.query(query, (error, results) => {
       if (error) { res.status(400).json({error: error}) }
-      else { res.status(200).json(results.rows[0])}
+      if (results.rows.length>0) { res.status(200).json(results.rows[0]) }
+      res.status(404).send()
     })
 }
 
 const addTicket = (req, res) => {
   const { title, description, status } = req.body
-  const query = 'INSERT INTO tickets(title,description,status) values($1,$2,$3)'
+  const query = 'INSERT INTO tickets(title,description,status) values($1,$2,$3) RETURNING *'
   pool.query(query, [title, description, status], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
-    else res.status(200).json(results.rows)
+    else res.status(200).json(results.rows[0])
+  })
+}
+
+const updateTicket = (req, res) => {
+  const { title, description, status } = req.body
+  const query = 'UPDATE users SET title=$1, description=$2, status=$3 WHERE id=$4 RETURNING *'
+  pool.query(query, [title, description, status, req.params.id], (error, results) => {
+    if (error) { res.status(400).json({error: error}) }
+    else res.status(200).json(results.rows[0])
   })
 }
 
@@ -36,5 +46,5 @@ const deleteTicket = (req, res) => {
 }
 
 module.exports = {
-    getTickets, getTicketById, addTicket, deleteTicket
+    getTickets, getTicketById, addTicket, deleteTicket, updateTicket
 }
