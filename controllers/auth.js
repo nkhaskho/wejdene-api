@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt')
 const authenticate = async (req, res) => {
     const { username, password } = req.body
     let query = 'SELECT * FROM users WHERE username=$1'
-    console.log(username)
     await pool.query(query, [req.body.username], async (error, results) => {
       if (error) { res.status(400).json({error: error}) }
       if (results.rows.length>0) {
