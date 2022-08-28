@@ -13,8 +13,9 @@ const authenticate = async (req, res) => {
         if (!matched) {res.status(400).json({error: 'username or password incorrect'})}
         let token = jwt.sign({
           id: results.rows[0].id,
-          email: results.rows[0].email,
-          role: results.rows[0].role 
+          username: results.rows[0].username,
+          role: results.rows[0].role,
+          email: results.rows[0].email
           },
           process.env.SECRET,
           { expiresIn: "1000h" }
