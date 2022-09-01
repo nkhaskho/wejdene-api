@@ -20,9 +20,9 @@ const getTicketById = async (req, res) => {
 }
 
 const addTicket = (req, res) => {
-  const { title, description, status } = req.body
-  const query = 'INSERT INTO tickets(title,description,status) values($1,$2,$3) RETURNING *'
-  pool.query(query, [title, description, status], (error, results) => {
+  const { title, description, status, createdBy } = req.body
+  const query = 'INSERT INTO tickets(title,description,status,createdby) values($1,$2,$3,$4) RETURNING *'
+  pool.query(query, [title, description, status, createdBy], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])
   })

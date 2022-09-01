@@ -21,7 +21,6 @@ const getSubCategoryById = (req, res) => {
 
 const addSubCategory = (req, res) => {
     const query = 'INSERT INTO subcategories(name,category) VALUES($1,$2) RETURNING *'
-    console.log(req.body.name)
     pool.query(query, [req.body.name,req.body.category], (error, results) => {
       if (error) { console.log(error) }
       else res.status(200).json(results.rows[0])

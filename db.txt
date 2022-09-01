@@ -14,13 +14,10 @@ GRANT
 
 postgres=# \du
 postgres=# \dt
-postgres=# \l
-
-# \l
-
 
 List all databases
 postgres=# \list
+postgres=# \l
 
 Connect to a database
 \connect dbname 
@@ -31,7 +28,9 @@ CREATE TABLE users(
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(128) NOT NULL,
-    role VARCHAR(20) NOT NULL
+    role VARCHAR(20) NOT NULL,
+    phone INTEGER,
+    image VARCHAR(255)
 );
 INSERT INTO users(username, email, password, role) values('nkhaskho', 'nkh@email.com', 'pass1234', 'admin');
 
@@ -47,7 +46,8 @@ CREATE TABLE subcategories(
     category INT NOT NULL,
     CONSTRAINT fk_category
       FOREIGN KEY(category) 
-	  REFERENCES categories(id) 
+	  REFERENCES categories(id)
+      ON DELETE CASCADE
 );
 
 CREATE TABLE tickets(
@@ -56,5 +56,10 @@ CREATE TABLE tickets(
     description VARCHAR(255) NOT NULL,
     createdAt TIMESTAMP DEFAULT NOW(),
     closedAt TIMESTAMP,
-    status VARCHAR(30) NOT NULL
+    status VARCHAR(30) NOT NULL,
+    createdby INT NOT NULL,
+    CONSTRAINT fk_createdby
+      FOREIGN KEY(createdby) 
+	  REFERENCES users(id)
+      ON DELETE CASCADE
 );  
