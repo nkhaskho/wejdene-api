@@ -1,5 +1,6 @@
 const express = require('express')
 var bodyParser = require('body-parser')
+var morgan = require('morgan')
 var cors = require('cors')
 
 const User = require('./controllers/user')
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 3000
 
 app.use(cors())
 // app.use(express.json())
+app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true,}))
 
