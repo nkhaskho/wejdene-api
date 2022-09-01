@@ -81,7 +81,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"nkhaskho\",\n  \"email\": \"nkhaskho@email.com\",\n  \"password\": \"pass1234\",\n  \"role\": \"admin\"\n}",
+							"raw": "{\n  \"username\": \"wejdene\",\n  \"email\": \"wejdene@email.com\",\n  \"password\": \"pass1234\",\n  \"role\": \"agent\",\n  \"phone\": 55944780\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -169,7 +169,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/3",
+							"raw": "http://localhost:3000/api/users/12",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -178,7 +178,7 @@
 							"path": [
 								"api",
 								"users",
-								"3"
+								"12"
 							]
 						}
 					},
@@ -290,7 +290,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/tickets/1",
+							"raw": "http://localhost:3000/api/tickets/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -299,7 +299,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -312,7 +312,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"_id\": \"62f52bcc4d7528c5563aa3b1\",\n    \"fullName\": \"Naiim Khaskhoussi\",\n    \"username\": \"nkhaskho1\",\n    \"email\": \"nkhaskho@gmail.com\",\n    \"role\": \"client\",\n    \"joinedAt\": \"2022-08-11T16:18:15.834Z\",\n    \"phone\": 55944780,\n    \"__v\": 0\n}",
+							"raw": "{\n    \"id\": 2,\n    \"title\": \"Request for something\",\n    \"description\": \"Required for loreum selium\",\n    \"status\": \"closed\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -443,7 +443,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Financial services\"\n}",
+							"raw": "{\n    \"name\": \"Test\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -493,7 +493,37 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 3,\n    \"name\": \"Information & Technology\"\n}",
+							"raw": "{\n    \"id\": 2,\n    \"name\": \"Information and Technology\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/categories/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete category by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -511,36 +541,6 @@
 								"api",
 								"categories",
 								"3"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete category by id",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"_id\": \"61b0baf9dc2358d11a94c1d1\",\n    \"userName\": \"n.khaskhoussi\",\n    \"fullName\": \"Naiim Khaskhoussi\",\n    \"email\": \"nkh@gmail.com\",\n    \"role\": \"AGENT\",\n    \"password\": \"\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/categories/4",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"categories",
-								"4"
 							]
 						}
 					},
@@ -629,7 +629,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"sub 4\",\n    \"category\": 2\n}",
+							"raw": "{\n    \"name\": \"Test sub\",\n    \"category\": 3\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -744,7 +744,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\": \"nkhaskho\",\n    \"password\": \"pass12334\"\n}",
+							"raw": "{\n    \"username\": \"nkhaskho\",\n    \"password\": \"pass1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
