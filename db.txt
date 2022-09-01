@@ -1,5 +1,3 @@
-https://www.digitalocean.com/community/tutorials/how-to-use-postgresql-with-node-js-on-ubuntu-20-04
-
 
 $ sudo -u postgres psql
 
@@ -16,11 +14,10 @@ postgres=# \du
 postgres=# \dt
 
 List all databases
-postgres=# \list
-postgres=# \l
+postgres=# \list (or \l)
 
 Connect to a database
-\connect dbname 
+\connect <dbname> 
 
 
 CREATE TABLE users(
@@ -32,13 +29,11 @@ CREATE TABLE users(
     phone INTEGER,
     image VARCHAR(255)
 );
-INSERT INTO users(username, email, password, role) values('nkhaskho', 'nkh@email.com', 'pass1234', 'admin');
 
 CREATE TABLE categories(
     id SERIAL PRIMARY KEY,
     name VARCHAR(50) UNIQUE NOT NULL
 );
-INSERT INTO categories(name) values('Administration');
 
 CREATE TABLE subcategories(
     id SERIAL PRIMARY KEY,
