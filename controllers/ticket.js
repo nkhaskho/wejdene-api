@@ -30,7 +30,7 @@ const addTicket = (req, res) => {
 
 const updateTicket = (req, res) => {
   const { title, description, status } = req.body
-  const query = 'UPDATE users SET title=$1, description=$2, status=$3 WHERE id=$4 RETURNING *'
+  const query = 'UPDATE tickets SET title=$1, description=$2, status=$3 WHERE id=$4 RETURNING *'
   pool.query(query, [title, description, status, req.params.id], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])
