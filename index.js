@@ -51,6 +51,7 @@ app.delete('/api/categories/:id', Category.deleteCategory)
 app.get('/api/subcategories', SubCategory.getSubCategories)
 app.post('/api/subcategories', SubCategory.addSubCategory)
 app.get('/api/subcategories/:id', SubCategory.getSubCategoryById)
+app.put('/api/subcategories/:id', SubCategory.updateSubCategory)
 app.delete('/api/subcategories/:id', SubCategory.deleteSubCategory)
 
 // stocks endpoint

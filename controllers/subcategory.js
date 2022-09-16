@@ -27,6 +27,14 @@ const addSubCategory = (req, res) => {
     })
 }
 
+const updateSubCategory = (req, res) => {
+  const query = 'UPDATE subcategories SET name=$1, category=$2 WHERE id=$3 RETURNING *'
+  pool.query(query, [req.body.name, req.body.category, req.params.id], (error, results) => {
+    if (error) { res.status(400).json({error: error}) }
+    else res.status(200).json(results.rows[0])
+  })
+}
+
 const deleteSubCategory = (req, res) => {
   const query = `DELETE FROM subcategories WHERE id=${req.params.id}`
   pool.query(query, (error, results) => {
@@ -36,5 +44,5 @@ const deleteSubCategory = (req, res) => {
 }
 
 module.exports = {
-    getSubCategories, getSubCategoryById, addSubCategory, deleteSubCategory
+    getSubCategories, getSubCategoryById, addSubCategory, updateSubCategory, deleteSubCategory
 }
