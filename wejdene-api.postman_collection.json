@@ -262,7 +262,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"title\": \"New ticket abc\",\n  \"description\": \"Abc desc\",\n  \"status\": \"on-going\"\n}",
+							"raw": "{\n  \"title\": \"New ticket abc\",\n  \"description\": \"Abc desc\",\n  \"status\": \"on-going\",\n  \"createdBy\": 2\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -290,7 +290,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/tickets/2",
+							"raw": "http://localhost:3000/api/tickets/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -299,7 +299,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -312,7 +312,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 2,\n    \"title\": \"Request for something\",\n    \"description\": \"Required for loreum selium\",\n    \"status\": \"closed\"\n}",
+							"raw": "{\n    \"id\": 4,\n    \"title\": \"ccc vvvv\",\n    \"description\": \"vvvv\",\n    \"createdat\": \"2022-09-02T00:40:07.234Z\",\n    \"status\": \"in-progress\",\n    \"createdby\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -320,7 +320,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tickets/2",
+							"raw": "http://localhost:3000/api/tickets/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -329,7 +329,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -359,6 +359,187 @@
 							"path": [
 								"api",
 								"tickets",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "stocks",
+			"item": [
+				{
+					"name": "Get all stocks",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-auth-token",
+								"type": "text",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MWMxYzU3YjVlOTU5OWNiY2IxMmE2ZTQiLCJyb2xlIjoiYWRtaW4iLCJmdWxsTmFtZSI6IlNlbWFoIEtoYXNraG91c3NpIiwiaWF0IjoxNjQwMTcxNjMwfQ.miya_RP9TmZSqBk_pK71XM0_00Dl_Tjy3IonjqQHJj4",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/stocks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"stocks"
+							],
+							"query": [
+								{
+									"key": "governorate",
+									"value": "ben arous",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "khaskhoussi",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new stock",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Product 1\",\n  \"model\": \"Product Model\",\n  \"quantity\": 100,\n  \"subcategory\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/stocks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get stock by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/stocks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update stock by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Product 1\",\n    \"model\": \"Product 1 Model\",\n    \"quantity\": 94\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/stocks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"stocks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete stock by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"_id\": \"61b0baf9dc2358d11a94c1d1\",\n    \"userName\": \"n.khaskhoussi\",\n    \"fullName\": \"Naiim Khaskhoussi\",\n    \"email\": \"nkh@gmail.com\",\n    \"role\": \"AGENT\",\n    \"password\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/stocks/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"stocks",
 								"2"
 							]
 						}
@@ -679,7 +860,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 3,\n    \"name\": \"Information & Technology\",\n    \"category\": 1\n}",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"Direction\",\n    \"category\": 1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -687,7 +868,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/subcategories/3",
+							"raw": "http://localhost:3000/api/subcategories/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -696,7 +877,7 @@
 							"path": [
 								"api",
 								"subcategories",
-								"3"
+								"1"
 							]
 						}
 					},
