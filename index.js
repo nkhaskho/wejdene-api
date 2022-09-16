@@ -6,6 +6,7 @@ var cors = require('cors')
 const User = require('./controllers/user')
 const Category = require('./controllers/category')
 const Ticket = require('./controllers/ticket')
+const Stock = require('./controllers/stock')
 const SubCategory = require('./controllers/subcategory')
 const Auth = require('./controllers/auth')
 
@@ -46,11 +47,18 @@ app.get('/api/categories/:id', Category.getCategoryById)
 app.put('/api/categories/:id', Category.updateCategory)
 app.delete('/api/categories/:id', Category.deleteCategory)
 
-// categories endpoint
+// subcategories endpoint
 app.get('/api/subcategories', SubCategory.getSubCategories)
 app.post('/api/subcategories', SubCategory.addSubCategory)
 app.get('/api/subcategories/:id', SubCategory.getSubCategoryById)
 app.delete('/api/subcategories/:id', SubCategory.deleteSubCategory)
+
+// stocks endpoint
+app.get('/api/stocks', Stock.getStocks)
+app.post('/api/stocks', Stock.addStock)
+app.get('/api/stocks/:id', Stock.getStockById)
+app.put('/api/stocks/:id', Stock.updateStock)
+app.delete('/api/stocks/:id', Stock.deleteStock)
 
 // auth endpoint
 app.post('/api/auth', Auth.authenticate)

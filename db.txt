@@ -2,15 +2,13 @@
 $ sudo -u postgres psql
 
 postgres=# CREATE USER <dbuser> WITH PASSWORD <dbpassword>;
-CREATE ROLE
-
 postgres=# CREATE DATABASE <dbname>;
-CREATE DATABASE
-
 postgres=# GRANT ALL PRIVILEGES ON DATABASE <dbname> TO <dbuser>;
-GRANT
 
+List all users
 postgres=# \du
+
+List all tables
 postgres=# \dt
 
 List all databases
@@ -57,4 +55,16 @@ CREATE TABLE tickets(
       FOREIGN KEY(createdby) 
 	  REFERENCES users(id)
       ON DELETE CASCADE
-);  
+); 
+
+CREATE TABLE stocks(
+    id SERIAL PRIMARY KEY,
+    subcategory INT NOT NULL,
+    name VARCHAR(128) NOT NULL,
+    model VARCHAR(128) NOT NULL,
+    quantity INT NOT NULL,
+    CONSTRAINT fk_subcategory
+      FOREIGN KEY(subcategory) 
+	  REFERENCES subcategoriess(id)
+      ON DELETE CASCADE
+); 
