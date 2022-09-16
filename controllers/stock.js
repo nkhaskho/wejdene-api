@@ -20,18 +20,18 @@ const getStockById = async (req, res) => {
 }
 
 const addStock = (req, res) => {
-  const { name, model, quantity } = req.body
-  const query = 'INSERT INTO stocks(name,model,quantity) values($1,$2,$3) RETURNING *'
-  pool.query(query, [name,model,quantity], (error, results) => {
+  const { name, model, subcategory, quantity } = req.body
+  const query = 'INSERT INTO stocks(name,model,subcategory,quantity) values($1,$2,$3,$4) RETURNING *'
+  pool.query(query, [name,model,subcategory,quantity], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])
   })
 }
 
 const updateStock = (req, res) => {
-  const { name, model, quantity } = req.body
-  const query = 'UPDATE stocks SET name=$1, model=$2, quantity=$3 WHERE id=$4 RETURNING *'
-  pool.query(query, [name, model, quantity, req.params.id], (error, results) => {
+  const { name, model, subcategory, quantity } = req.body
+  const query = 'UPDATE stocks SET name=$1, model=$2, subcategory=$3, quantity=$4 WHERE id=$5 RETURNING *'
+  pool.query(query, [name, model, subcategory, quantity, req.params.id], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])
   })

@@ -77,11 +77,21 @@
 				{
 					"name": "Add new user",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJua2hhc2tobyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoibmtoYXNraG9AZW1haWwuY29tIiwiaWF0IjoxNjYzMjg5MzMzLCJleHAiOjE2NjY4ODkzMzN9.FicuruGCFEKqJZoKFkr_CxBCBrcURtolqtqFlSLUYjE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"wejdene\",\n  \"email\": \"wejdene@email.com\",\n  \"password\": \"pass1234\",\n  \"role\": \"agent\",\n  \"phone\": 55944780\n}",
+							"raw": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@email.com\",\n  \"password\": \"pass1234\",\n  \"role\": \"agent\",\n  \"phone\": 55944780\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -439,6 +449,16 @@
 				{
 					"name": "Add new stock",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJua2hhc2tobyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoibmtoYXNraG9AZW1haWwuY29tIiwiaWF0IjoxNjYzMjkyNzg4LCJleHAiOjE2NjY4OTI3ODh9.qb2eR1C-QPFjtrOynrwhULlJHahM0zyKK2mcH_HwFhQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {

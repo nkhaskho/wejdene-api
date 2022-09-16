@@ -65,6 +65,6 @@ CREATE TABLE stocks(
     quantity INT NOT NULL,
     CONSTRAINT fk_subcategory
       FOREIGN KEY(subcategory) 
-	  REFERENCES subcategoriess(id)
+	  REFERENCES subcategories(id)
       ON DELETE CASCADE
 ); 
