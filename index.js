@@ -6,9 +6,10 @@ var cors = require('cors')
 const User = require('./controllers/user')
 const Category = require('./controllers/category')
 const Ticket = require('./controllers/ticket')
+const Auth = require('./middlewares/auth')
 const Stock = require('./controllers/stock')
 const SubCategory = require('./controllers/subcategory')
-const Auth = require('./controllers/auth')
+const { authenticate } = require('./controllers/auth')
 
 const dotenv = require("dotenv")
 dotenv.config()
@@ -28,10 +29,10 @@ app.get('/api/test', (req, res) => {
 
 // users endpoint
 app.get('/api/users', User.getUsers)
-app.post('/api/users', User.addUser)
+app.post('/api/users', Auth.isAdmin, User.addUser)
 app.get('/api/users/:id', User.getUserById)
 app.put('/api/users/:id', User.updateUser)
-app.delete('/api/users/:id', User.deleteUser)
+app.delete('/api/users/:id', Auth.isAdmin, User.deleteUser)
 
 // tickets endpoint
 app.get('/api/tickets', Ticket.getTickets)
@@ -56,13 +57,13 @@ app.delete('/api/subcategories/:id', SubCategory.deleteSubCategory)
 
 // stocks endpoint
 app.get('/api/stocks', Stock.getStocks)
-app.post('/api/stocks', Stock.addStock)
+app.post('/api/stocks', Auth.isAdmin, Stock.addStock)
 app.get('/api/stocks/:id', Stock.getStockById)
 app.put('/api/stocks/:id', Stock.updateStock)
 app.delete('/api/stocks/:id', Stock.deleteStock)
 
 // auth endpoint
-app.post('/api/auth', Auth.authenticate)
+app.post('/api/auth', authenticate)
 
 app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`)

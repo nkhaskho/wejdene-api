@@ -41,13 +41,6 @@ const updateUser = (req, res) => {
   })
 }
 
-/*
-pool.query("UPDATE shark SET name = $1 WHERE id = $2", [
-      name,
-      id,
-    ]);
-*/
-
 const deleteUser = (req, res) => {
   const query = `DELETE FROM users WHERE id=${req.params.id}`
   pool.query(query, (error, results) => {
