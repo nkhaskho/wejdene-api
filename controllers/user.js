@@ -3,8 +3,10 @@ const bcrypt = require('bcrypt')
 
 const getUsers = async (req, res) => {
     const role = req.query.role
-    let query = 'SELECT * FROM users'
-    if (role!=null) query += ` WHERE role='${role}'`
+    const search = req.query.search
+    let query = 'SELECT * FROM users WHERE id > 0'
+    if (role) query += ` AND role='${role}'`
+    if (search) query += ` AND (username LIKE '%${search}%' or email LIKE '%${search}%')`
     await pool.query(query, (error, results) => {
       if (error) { console.log(error) }
       else { res.status(200).json(results.rows)}
