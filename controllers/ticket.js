@@ -1,11 +1,15 @@
 const { pool } = require('../config/db')
 
 const getTickets = async (req, res) => {
-    let query = 'SELECT * FROM tickets'
-    await pool.query(query, (error, results) => {
-      if (error) { console.log(error) }
-      else { res.status(200).json(results.rows)}
-    })
+  let query = 'SELECT * FROM tickets WHERE id > 0'
+  if (req.query.status) query += `AND status='${req.query.status}'`
+  if (req.query.priority) query += `AND priority='${req.query.priority}'`
+  if (req.query.createdBy) query += `AND createdby='${req.query.createdBy}'`
+  if (req.query.assignee) query += `AND assignee='${req.query.assignee}'`
+  await pool.query(query, (error, results) => {
+    if (error) { console.log(error) }
+    else { res.status(200).json(results.rows)}
+  })
 }
 
 const getTicketById = async (req, res) => {

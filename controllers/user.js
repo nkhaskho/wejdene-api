@@ -2,7 +2,9 @@ const { pool } = require('../config/db')
 const bcrypt = require('bcrypt')
 
 const getUsers = async (req, res) => {
+    const role = req.query.role
     let query = 'SELECT * FROM users'
+    if (role!=null) query += ` WHERE role='${role}'`
     await pool.query(query, (error, results) => {
       if (error) { console.log(error) }
       else { res.status(200).json(results.rows)}

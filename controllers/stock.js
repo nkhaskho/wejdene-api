@@ -1,7 +1,9 @@
 const { pool } = require('../config/db')
 
 const getStocks = async (req, res) => {
-    let query = 'SELECT * FROM stocks'
+    let query = 'SELECT * FROM stocks WHERE id > 0'
+    if (req.query.subcategory) query += `AND subcategory='${req.query.subcategory}'`
+    if (req.query.search) query += `AND name LIKE '%${req.query.search}%' OR model LIKE '${req.query.search}%'`
     await pool.query(query, (error, results) => {
       if (error) { console.log(error) }
       else { res.status(200).json(results.rows)}
