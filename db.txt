@@ -50,9 +50,15 @@ CREATE TABLE tickets(
     createdAt TIMESTAMP DEFAULT NOW(),
     closedAt TIMESTAMP,
     status VARCHAR(30) NOT NULL,
+    priority VARCHAR(30) NOT NULL,
     createdby INT NOT NULL,
+    assignee INT NOT NULL,
     CONSTRAINT fk_createdby
       FOREIGN KEY(createdby) 
+	  REFERENCES users(id)
+      ON DELETE CASCADE,
+    CONSTRAINT fk_assignee
+      FOREIGN KEY(assignee) 
 	  REFERENCES users(id)
       ON DELETE CASCADE
 ); 

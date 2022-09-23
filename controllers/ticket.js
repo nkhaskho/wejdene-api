@@ -20,18 +20,18 @@ const getTicketById = async (req, res) => {
 }
 
 const addTicket = (req, res) => {
-  const { title, description, status, createdBy } = req.body
-  const query = 'INSERT INTO tickets(title,description,status,createdby) values($1,$2,$3,$4) RETURNING *'
-  pool.query(query, [title, description, status, createdBy], (error, results) => {
+  const { title, description, status, createdBy, assignee, priority } = req.body
+  const query = 'INSERT INTO tickets(title,description,status,createdby,assignee,priority) values($1,$2,$3,$4,$5,$6) RETURNING *'
+  pool.query(query, [title, description, status, createdBy, assignee, priority], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])
   })
 }
 
 const updateTicket = (req, res) => {
-  const { title, description, status } = req.body
-  const query = 'UPDATE tickets SET title=$1, description=$2, status=$3 WHERE id=$4 RETURNING *'
-  pool.query(query, [title, description, status, req.params.id], (error, results) => {
+  const { title, description, status, assignee, priority } = req.body
+  const query = 'UPDATE tickets SET title=$1, description=$2, status=$3, assignee=$4, priority=$5 WHERE id=$6 RETURNING *'
+  pool.query(query, [title, description, status, assignee, priority, req.params.id], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])
   })
