@@ -25,11 +25,11 @@ const getUserById = async (req, res) => {
 }
 
 const addUser = async (req, res) => {
-  let { username, email, fullName, password, role, phone, image } = req.body
-  const query = 'INSERT INTO users(username,email,fullName,password,role,phone,image) values($1,$2,$3,$4,$5,$6,$7) RETURNING *'
+  let { username, email, fullname, password, role, phone, image } = req.body
+  const query = 'INSERT INTO users(username,email,fullname,password,role,phone,image) values($1,$2,$3,$4,$5,$6,$7) RETURNING *'
   const salt = await bcrypt.genSalt(Number(process.env.SALT));
   password = await bcrypt.hash(password, salt);
-  pool.query(query, [username, email, fullName, password, role, phone, image], (error, results) => {
+  pool.query(query, [username, email, fullname, password, role, phone, image], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows[0])
   })
@@ -37,9 +37,9 @@ const addUser = async (req, res) => {
 
 
 const updateUser = (req, res) => {
-  const { username, email, fullName, role, phone, image } = req.body
-  const query = 'UPDATE users SET username=$1, email=$2, fullName=$3, role=$4, phone=$5, image=$6 WHERE id=$7 RETURNING *'
-  pool.query(query, [username, email, fullName, role, phone, image, req.params.id], (error, results) => {
+  const { username, email, fullname, role, phone, image } = req.body
+  const query = 'UPDATE users SET username=$1, email=$2, fullname=$3, role=$4, phone=$5, image=$6 WHERE id=$7 RETURNING *'
+  pool.query(query, [username, email, fullname, role, phone, image, req.params.id], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
     else res.status(200).json(results.rows)
   })
