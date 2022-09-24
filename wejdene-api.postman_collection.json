@@ -43,7 +43,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users?role=user",
+							"raw": "http://localhost:3000/api/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -56,7 +56,13 @@
 							"query": [
 								{
 									"key": "role",
-									"value": "user"
+									"value": "user",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "nkhas",
+									"disabled": true
 								}
 							]
 						}
@@ -80,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"username\": \"newuser\",\n  \"email\": \"newuser@email.com\",\n  \"password\": \"pass1234\",\n  \"role\": \"agent\",\n  \"phone\": 55944780\n}",
+							"raw": "{\n    \"id\": 0,\n  \"username\": \"anewuser\",\n  \"email\": \"anewuser@email.com\",\n  \"fullName\": \"New User\",\n  \"password\": \"pass1234\",\n  \"role\": \"user\",\n  \"phone\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -108,7 +114,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/1",
+							"raw": "http://localhost:3000/api/users/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -117,7 +123,7 @@
 							"path": [
 								"api",
 								"users",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -223,7 +229,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tickets?status=on-going",
+							"raw": "http://localhost:3000/api/tickets?status=ongoing&priority=high",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -236,12 +242,11 @@
 							"query": [
 								{
 									"key": "status",
-									"value": "on-going"
+									"value": "ongoing"
 								},
 								{
 									"key": "priority",
-									"value": "high",
-									"disabled": true
+									"value": "high"
 								},
 								{
 									"key": "createdBy",
@@ -315,7 +320,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 1,\n    \"title\": \"New Hard drive\",\n    \"description\": \"Prefer SSD\",\n    \"createdat\": \"2022-09-23T22:34:34.355Z\",\n    \"closedat\": null,\n    \"status\": \"on-going\",\n    \"priority\": \"high\",\n    \"createdby\": 2,\n    \"assignee\": 1\n}",
+							"raw": "{\n        \"id\": 1,\n        \"title\": \"New Hard drive\",\n        \"description\": \"Prefer SSD\",\n        \"createdat\": \"2022-09-23T22:34:34.355Z\",\n        \"closedat\": null,\n        \"status\": \"ongoing\",\n        \"priority\": \"high\",\n        \"createdby\": 2,\n        \"assignee\": 1\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
