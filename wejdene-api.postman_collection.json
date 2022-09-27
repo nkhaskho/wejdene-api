@@ -86,7 +86,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": 0,\n  \"username\": \"anewuser\",\n  \"email\": \"anewuser@email.com\",\n  \"fullName\": \"New User\",\n  \"password\": \"pass1234\",\n  \"role\": \"user\",\n  \"phone\": 0\n}",
+							"raw": "{\n  \"username\": \"nkhaskhou\",\n  \"email\": \"khaskhoussi.naiim@gmail.com\",\n  \"fullname\": \"Naiim Khaskhoussi\",\n  \"password\": \"pass1234\",\n  \"role\": \"user\",\n  \"phone\": 0\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -114,7 +114,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/users/2",
+							"raw": "http://localhost:3000/api/users/18",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -123,7 +123,7 @@
 							"path": [
 								"api",
 								"users",
-								"2"
+								"18"
 							]
 						}
 					},
@@ -162,6 +162,16 @@
 				{
 					"name": "Delete user by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJua2hhc2tobyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoibmtoYXNraG9AZW1haWwuY29tIiwiaWF0IjoxNjY0MzE1NTYyLCJleHAiOjE2Njc5MTU1NjJ9.fzXh0ljhvdK3sYL8IyjqwN2rIgygaqztp6DY5PtbWI4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"body": {
@@ -174,7 +184,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/12",
+							"raw": "http://localhost:3000/api/users/22",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -183,7 +193,7 @@
 							"path": [
 								"api",
 								"users",
-								"12"
+								"22"
 							]
 						}
 					},
@@ -229,7 +239,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tickets?status=ongoing&priority=high",
+							"raw": "http://localhost:3000/api/tickets?status=on-going&priority=high&assignee=2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -242,7 +252,7 @@
 							"query": [
 								{
 									"key": "status",
-									"value": "ongoing"
+									"value": "on-going"
 								},
 								{
 									"key": "priority",
@@ -250,13 +260,12 @@
 								},
 								{
 									"key": "createdBy",
-									"value": "2",
+									"value": "1",
 									"disabled": true
 								},
 								{
 									"key": "assignee",
-									"value": "1",
-									"disabled": true
+									"value": "2"
 								}
 							]
 						}
@@ -298,7 +307,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/tickets/4",
+							"raw": "http://localhost:3000/api/tickets/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -307,7 +316,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"4"
+								"6"
 							]
 						}
 					},
@@ -320,7 +329,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n        \"id\": 1,\n        \"title\": \"New Hard drive\",\n        \"description\": \"Prefer SSD\",\n        \"createdat\": \"2022-09-23T22:34:34.355Z\",\n        \"closedat\": null,\n        \"status\": \"ongoing\",\n        \"priority\": \"high\",\n        \"createdby\": 2,\n        \"assignee\": 1\n    }",
+							"raw": "    {\n        \"id\": 6,\n        \"title\": \"a ticket a\",\n        \"description\": \"aaaa\",\n        \"createdat\": \"2022-09-24T01:06:37.626Z\",\n        \"closedat\": null,\n        \"status\": \"done\",\n        \"priority\": \"medium\",\n        \"createdby\": 1,\n        \"assignee\": 1\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -328,7 +337,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tickets/1",
+							"raw": "http://localhost:3000/api/tickets/6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -337,7 +346,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"1"
+								"6"
 							]
 						}
 					},
