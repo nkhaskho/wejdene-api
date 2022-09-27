@@ -184,7 +184,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/users/22",
+							"raw": "http://localhost:3000/api/users/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -193,7 +193,7 @@
 							"path": [
 								"api",
 								"users",
-								"22"
+								"7"
 							]
 						}
 					},
@@ -239,7 +239,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tickets?status=on-going&priority=high&assignee=2",
+							"raw": "http://localhost:3000/api/tickets?status=on-going",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -256,7 +256,8 @@
 								},
 								{
 									"key": "priority",
-									"value": "high"
+									"value": "low",
+									"disabled": true
 								},
 								{
 									"key": "createdBy",
@@ -265,7 +266,8 @@
 								},
 								{
 									"key": "assignee",
-									"value": "2"
+									"value": "2",
+									"disabled": true
 								}
 							]
 						}
@@ -329,7 +331,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\n        \"id\": 6,\n        \"title\": \"a ticket a\",\n        \"description\": \"aaaa\",\n        \"createdat\": \"2022-09-24T01:06:37.626Z\",\n        \"closedat\": null,\n        \"status\": \"done\",\n        \"priority\": \"medium\",\n        \"createdby\": 1,\n        \"assignee\": 1\n    }",
+							"raw": "    {\n        \"id\": 2,\n        \"title\": \"New ticket abc\",\n        \"description\": \"Abc desc\",\n        \"createdat\": \"2022-09-23T22:35:38.824Z\",\n        \"closedat\": null,\n        \"status\": \"on-going\",\n        \"priority\": \"low\",\n        \"createdby\": 2,\n        \"assignee\": 1\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -337,7 +339,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/tickets/6",
+							"raw": "http://localhost:3000/api/tickets/2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -346,7 +348,7 @@
 							"path": [
 								"api",
 								"tickets",
-								"6"
+								"2"
 							]
 						}
 					},
