@@ -1,5 +1,6 @@
 const { pool } = require('../config/db')
 const bcrypt = require('bcrypt')
+const { sendEmail } = require('../services/email-service')
 
 const getUsers = async (req, res) => {
     const role = req.query.role
@@ -28,10 +29,22 @@ const addUser = async (req, res) => {
   let { username, email, fullname, password, role, phone, image } = req.body
   const query = 'INSERT INTO users(username,email,fullname,password,role,phone,image) values($1,$2,$3,$4,$5,$6,$7) RETURNING *'
   const salt = await bcrypt.genSalt(Number(process.env.SALT));
-  password = await bcrypt.hash(password, salt);
-  pool.query(query, [username, email, fullname, password, role, phone, image], (error, results) => {
+  hashedPassword = await bcrypt.hash(password, salt);
+  pool.query(query, [username, email, fullname, hashedPassword, role, phone, image], (error, results) => {
     if (error) { res.status(400).json({error: error}) }
-    else res.status(200).json(results.rows[0])
+    else {
+      // Send welcome email
+      sendEmail(email, "Welcome to WIMBEE platform", `
+        Hi ${fullname},\n
+        Your account has been created with the unique ID: ${results.rows[0].id},\n
+        You could now access to WIMBEE app using your following credentials:
+          * username: ${username}
+          * password: ${password}\n
+        Regards,
+        WIMBEE team
+      `);
+      res.status(200).json(results.rows[0])
+    }
   })
 }
 
